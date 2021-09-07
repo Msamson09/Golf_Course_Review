@@ -1,3 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import GolfCourse
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import ListView, DetailView
+
 
 # Create your views here.
+class GolfCourseList(ListView):
+  model = GolfCourse
+
+class GolfCourseCreate(CreateView):
+  model = GolfCourse
+  fields = '__all__'
+
+class GolfCourseDetail(DetailView):
+  model = GolfCourse
+
+class GolfCourseUpdate(UpdateView):
+  model = GolfCourse
+  fields = [
+    'hours_open',
+    'price_9holes_wo_cart',
+    'price_9holes_w_cart',
+    'price_18holes_wo_cart',
+    'price_18holes_w_cart'
+    
+  ]
