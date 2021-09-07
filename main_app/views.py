@@ -33,6 +33,10 @@ class GolfCourseUpdate(UpdateView):
     'price_18holes_w_cart'
   ]
 
+def golfcourse_detail(request, pk):
+  golfcourse = GolfCourse.objects.get(id = pk)
+  return render(request, 'golfcourse/golfcourse_detail.html', {'golfcourse': golfcourse})
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':

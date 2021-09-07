@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.db.models.fields import BooleanField, IntegerField
 
 # Create your models here.
@@ -16,5 +17,8 @@ class GolfCourse(models.Model):
 
   def __str__(self):
       return self.name
+  
+  def get_absolute_url(self):
+      return reverse("golfcourse_detail", kwargs={"pk": self.pk})
   
   
