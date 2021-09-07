@@ -1,0 +1,1 @@
+web: gunicorn golf_course_review.wsgi
