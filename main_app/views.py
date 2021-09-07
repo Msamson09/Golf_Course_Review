@@ -13,17 +13,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class Home(LoginView):
   template_name = 'home.html'
 
-class GolfCourseList(ListView):
+class GolfCourseList(LoginRequiredMixin, ListView):
   model = GolfCourse
 
-class GolfCourseCreate(CreateView):
+class GolfCourseCreate(LoginRequiredMixin, CreateView):
   model = GolfCourse
   fields = '__all__'
 
-class GolfCourseDetail(DetailView):
+class GolfCourseDetail(LoginRequiredMixin, DetailView):
   model = GolfCourse
 
-class GolfCourseUpdate(UpdateView):
+class GolfCourseUpdate(LoginRequiredMixin, UpdateView):
   model = GolfCourse
   fields = [
     'hours_open',
