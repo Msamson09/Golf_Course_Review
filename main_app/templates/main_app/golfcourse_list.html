@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type='text/css' href="{% static 'css/home.css' %}">
+{% endblock head %}
+{% block content %}
+
+<section>
+  {% for golfcourse in golfcourse_list %}
+    <a href="{% url 'golfcourse_detail' golfcourse.id %}>
+      <div>
+        <h2>{{ golfcourse.name }}</h2>
+      </div>
+    </a>
+  {% endfor %}
+</section>

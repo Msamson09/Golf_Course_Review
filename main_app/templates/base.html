@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golf Course Review</title>
+  {% block head %}
+  {% endblock  %}
+</head>
+<body>
+  <header>
+    <div>
+      <a href="/">
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="{% url 'golfcourse_index' %}">All Courses</a></li>
+        <li><a href="{% url 'golfcourse_create' %}">Add a Course</a></li>
+        {% comment %} <li><a href="{% url 'logout' %}">Log Out</a></li> {% endcomment %}
+      </ul>
+    </nav>
+  </header>  
+</body>
+</html>

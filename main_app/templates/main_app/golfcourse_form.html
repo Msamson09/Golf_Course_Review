@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock head %}
+{% block content %}
+  {% if object %}
+    <h1 class='header'>Edit Course</h1>
+  {% else %}
+    <h1 class='header'>Add Course</h1>
+  {% endif %}
+<section class='form-sect'>
+  <form method="POST">
+  {% csrf_token %}
+  <table>
+    {{form.as_table}}
+  </table>
+  <div class='submit-div'>
+    <button class='submit-btn' type="submit">Submit!</button>
+  </div>
+  </form>
+</section>
+{% endblock content %}
