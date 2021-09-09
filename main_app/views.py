@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import GolfCourse
+from .models import GolfCourse, Photo
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.views import LoginView
@@ -7,7 +7,11 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+import uuid
+import boto3
 
+S3_BASE_URL = 'https://s3.us-west-2.amazonaws.com/'
+BUCKET = 'golf-course-review'
 
 # Create your views here.
 class Home(LoginView):
@@ -15,6 +19,32 @@ class Home(LoginView):
 
 class GolfCourseList(LoginRequiredMixin, ListView):
   model = GolfCourse
+
+@login_required
+def add_photo(request, pk):
+  # photo-file will be the "name" attribute on the <input type="file">
+  photo_file = request.FILES.get('photo-file', None)
+  if photo_file:
+    s3 = boto3.client('s3')
+    # need a unique "key" for S3 / needs image file extension too
+		# uuid.uuid4().hex generates a random hexadecimal Universally Unique Identifier
+    # Add on the file extension using photo_file.name[photo_file.name.rfind('.'):]
+    key = uuid.uuid4().hex + photo_file.name[photo_file.name.rfind('.'):]
+    # just in case something goes wrong
+    try:
+      s3.upload_fileobj(photo_file, BUCKET, key)
+      # build the full url string
+      url = f"{S3_BASE_URL}{BUCKET}/{key}"
+      # we can assign to cat_id or cat (if you have a cat object)
+      photo = Photo(url=url, golfcourse=golfcourse)
+      # Remove old photo if it exists
+      golfcourse_photo = Photo.objects.filter(golfcourse=pk)
+      if golfcourse_photo.first():
+        golfcourse_photo.first().delete()
+      photo.save()
+    except Exception as err:
+      print('An error occurred uploading file to S3: %s' % err)
+  return redirect('golfcourse_detail', pk=pk)
 
 class GolfCourseCreate(LoginRequiredMixin, CreateView):
   model = GolfCourse

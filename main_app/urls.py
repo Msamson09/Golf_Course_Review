@@ -8,5 +8,5 @@ urlpatterns = [
     path('golfcourse/crate/', views.GolfCourseCreate.as_view(), name='golfcourse_create'),
     path('golfcourse/<int:pk>/update/', views.GolfCourseUpdate.as_view(), name='golfcourse_update'),
     path('accounts/signup/', views.signup, name='signup'),
-    
+    path('cats/<int:pk>/add_photo/', views.add_photo, name='add_photo')
 ]

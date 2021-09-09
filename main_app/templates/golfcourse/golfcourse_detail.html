@@ -5,20 +5,44 @@
 {% endblock head %}
 {% block content %}
 
-<h2>{{ golfcourse.name }}</h2>
-<p>Address: {{ golfcourse.address }}</p>
-<p>Course hours: {{ golfcourse.hours_open }}</p>
-<p>Price for 9 holes without a cart: {{ golfcourse.price_9holes_wo_cart }}</p>
-<p>Price for 9 holes with a cart: {{ golfcourse.price_9holes_w_cart }}</p>
-<p>Price for 18 holes without a cart: {{ golfcourse.price_18holes_wo_cart }}</p>
-<p>Price for 18 holes with a cart: {{ golfcourse.price_18holes_w_cart }}</p>
+<section class="course-container">
+  <div class="course-img">
+    <img
+      src="{{ golfcourse.photo.url }}" 
+      alt=""
+      class="usr-img"
+    >
+  </div>
+  <h2>{{ golfcourse.name }}</h2>
+  <p>Address: {{ golfcourse.address }}</p>
+  <p>Course hours: {{ golfcourse.hours_open }}</p>
+  <p>Price for 9 holes without a cart: {{ golfcourse.price_9holes_wo_cart }}</p>
+  <p>Price for 9 holes with a cart: {{ golfcourse.price_9holes_w_cart }}</p>
+  <p>Price for 18 holes without a cart: {{ golfcourse.price_18holes_wo_cart }}</p>
+  <p>Price for 18 holes with a cart: {{ golfcourse.price_18holes_w_cart }}</p>
 
-<div>
-  <a href="{% url 'golfcourse_update' golfcourse.id %}">
-  <button>
-  Edit
-  </button>
-  </a>
-</div>
+  <div>
+    <a href="{% url 'golfcourse_update' golfcourse.id %}">
+    <button>
+    Edit
+    </button>
+    </a>
+  </div>
 
+  <h3>Change {{ golfcourse.name }}'s photo</h3>
+    <p id="file-name"></p>
+    <form 
+      action="{% url 'add_photo' golfcourse.id %}"
+      enctype="multipart/form-data"
+      method="POST"
+    >
+      {% csrf_token %}
+      <label class="btn secondary">
+        Choose photo
+        <input type="file" name="photo-file" id="file-input">
+      </label>
+      <button type="submit" class="btn submit">Upload Photo</button>
+    </form>
+
+</section>
 {% endblock %}
