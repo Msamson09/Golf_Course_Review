@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
   <title>Golf Course Review</title>
   {% block head %}
   {% endblock  %}
@@ -16,17 +17,17 @@
     </a>
   </div>
   <nav>
-    <ul>
+    <div class="navbar-item">
       {% if user.is_authenticated %}
-      <li><a href="{% url 'golfcourse_index' %}">All Courses</a></li>
-      <li><a href="{% url 'golfcourse_create' %}">Add a Course</a></li>
-      <li><a href="{% url 'logout' %}">Logout</a></li>
+      <a href="{% url 'golfcourse_index' %}">All Courses</a></li>
+      <a href="{% url 'golfcourse_create' %}">Add a Course</a></li>
+      <a href="{% url 'logout' %}">Logout</a></li>
       {% comment %} <li><a href="{% url 'logout' %}">Log Out</a></li> {% endcomment %}
       {% else %}
-      <li><a href="{% url 'home' %}">Login</a></li>
-      <li><a href="{% url 'signup' %}">Sign Up</a></li>
+      <a href="{% url 'home' %}">Login</a></li>
+      <a href="{% url 'signup' %}">Sign Up</a></li>
       {% endif %}
-    </ul>
+    </div>
   </nav>
   <main>
   {% block content %}
