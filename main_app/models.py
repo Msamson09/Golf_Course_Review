@@ -17,17 +17,17 @@ class GolfCourse(models.Model):
   # reviews = ManyToManyField(Review)
 
   def __str__(self):
-      return self.name
+    return self.name
   
   def get_absolute_url(self):
-      return reverse("golfcourse_detail", kwargs={"pk": self.pk})
+    return reverse("golfcourse_detail", kwargs={"pk": self.pk})
 
 class Photo(models.Model):
   url = models.CharField(max_length=250)
   golfcourse = models.OneToOneField(GolfCourse, on_delete=models.CASCADE)
 
   def __str__(self):
-      return f"Photo for golfcourse_id: {self.golfcourse_id} @{self.url}"
+    return f"Photo for golfcourse_id: {self.golfcourse_id} @{self.url}"
   
   
   
