@@ -5,15 +5,18 @@
 {% endblock head %}
 {% block content %}
 
-<section>
+<section class='golfcourse-list'>
   {% for golfcourse in golfcourse_list %}
     <a href="{% url 'golfcourse_detail' golfcourse.id %}">
-      <div>
-        <h2>{{ golfcourse.name }}</h2>
-    </a>
-        <p>{{ golfcourse.address }}</p>
+      <div class='card'>
+        <div>
+          <img class='image' src="{{ golfcourse.photo.url }}" alt="">
+          <h2>{{ golfcourse.name }}</h2>
+          <p>{{ golfcourse.address }}</p>
+        </div>
       </div>
+    </a>
   {% endfor %}
 </section>
 
-{% endblock %}
+{% endblock content %}

@@ -1,0 +1,26 @@
+.golfcourse-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card {
+  background-color: #00A896;
+  width: 30rem;
+  padding: 0.75rem;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: max-content;
+  text-align: center;
+  margin: 20px 0 20px 0;
+  box-shadow: 8px 8px 8px #00A896;
+}
+
+.image {
+  width: 27rem;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 5px #0c3376;
+}
