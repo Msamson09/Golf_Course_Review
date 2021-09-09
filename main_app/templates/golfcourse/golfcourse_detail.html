@@ -12,6 +12,20 @@
       alt=""
       class="usr-img"
     >
+  <h3>Change {{ golfcourse.name }}'s photo</h3>
+    <p id="file-name"></p>
+    <form 
+      action="{% url 'add_photo' golfcourse.id %}"
+      enctype="multipart/form-data"
+      method="POST"
+    >
+      {% csrf_token %}
+      <label class="btn secondary">
+        Choose photo
+        <input type="file" name="photo-file" id="file-input">
+      </label>
+      <button type="submit" class="btn submit">Upload Photo</button>
+    </form>
   </div>
   <h2>{{ golfcourse.name }}</h2>
   <p>Address: {{ golfcourse.address }}</p>
@@ -29,20 +43,6 @@
     </a>
   </div>
 
-  <h3>Change {{ golfcourse.name }}'s photo</h3>
-    <p id="file-name"></p>
-    <form 
-      action="{% url 'add_photo' golfcourse.id %}"
-      enctype="multipart/form-data"
-      method="POST"
-    >
-      {% csrf_token %}
-      <label class="btn secondary">
-        Choose photo
-        <input type="file" name="photo-file" id="file-input">
-      </label>
-      <button type="submit" class="btn submit">Upload Photo</button>
-    </form>
 
 </section>
 {% endblock %}
