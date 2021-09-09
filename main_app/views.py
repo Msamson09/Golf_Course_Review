@@ -36,7 +36,7 @@ def add_photo(request, pk):
       # build the full url string
       url = f"{S3_BASE_URL}{BUCKET}/{key}"
       # we can assign to cat_id or cat (if you have a cat object)
-      photo = Photo(url=url, golfcourse=golfcourse)
+      photo = Photo(url=url, golfcourse=pk)
       # Remove old photo if it exists
       golfcourse_photo = Photo.objects.filter(golfcourse=pk)
       if golfcourse_photo.first():
