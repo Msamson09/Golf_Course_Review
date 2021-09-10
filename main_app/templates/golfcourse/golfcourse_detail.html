@@ -7,11 +7,17 @@
 
 <section class="course-container">
   <div class="course-img">
-    <img
+  {% if golfcourse.photo.url %}
+    <img class="image"
       src="{{ golfcourse.photo.url }}" 
       alt=""
       class="usr-img"
     >
+  {% else %}
+    <img class="image"
+      src="{% static 'images/Default_Golf_Pic.jpeg' %}"
+      alt="">
+  {% endif %}
   <h3>Change {{ golfcourse.name }}'s photo</h3>
     <p id="file-name"></p>
     <form 

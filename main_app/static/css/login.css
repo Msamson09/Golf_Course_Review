@@ -1,0 +1,10 @@
+.login {
+background-color: #00A896;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+border-radius: 1rem;
+color: #636;
+padding: 0.75rem;
+margin: 0.75rem
+}

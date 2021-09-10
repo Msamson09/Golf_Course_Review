@@ -24,3 +24,14 @@
   border-radius: 1rem;
   box-shadow: 5px 5px 5px #0c3376;
 }
+
+.course-container {
+  background-color: #00A896;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-radius: 1rem;
+  color: #636;
+  padding: 0.75rem;
+  margin: 0.75rem
+}
